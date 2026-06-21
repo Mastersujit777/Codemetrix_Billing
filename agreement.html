@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/img/Codemetrix-Horizontal-logo.png">
+<title>Agreement · CodeMetrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-doctype="AGR">
+<header id="nav"></header>
+<div class="wrap">
+  <div class="page-head">
+    <div><h2>Service Agreement</h2><div class="sub">A services contract with numbered clauses and dual signatures. <a href="project.html">← all project documents</a></div></div>
+  </div>
+
+  <div class="bill">
+    <aside class="panel">
+      <details class="grp" open>
+        <summary>Document</summary>
+        <div class="gbody">
+          <div class="row3">
+            <label class="f"><span class="lab">Date</span><input id="docDate" type="date"></label>
+            <label class="f"><span class="lab">FY</span><input id="fy" class="mono"></label>
+            <label class="f"><span class="lab">Seq #</span><input id="seq" class="mono" type="number" min="1"></label>
+          </div>
+          <label class="f"><span class="lab">Number</span><input id="docNoShort" class="mono" readonly style="background:#f0f4f8"></label>
+          <label class="f"><span class="lab">Project / engagement title</span><input data-field="projectTitle" placeholder="e.g. Website Development & Maintenance"></label>
+          <label class="f"><span class="lab">Signature line</span>
+            <select data-field="signMode">
+              <option value="sign">Signature space (both parties)</option>
+              <option value="system">System generated — no signature</option>
+            </select>
+          </label>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Client</summary>
+        <div class="gbody">
+          <label class="f"><span class="lab">Find client</span>
+            <input id="clientSearch" list="clientList" placeholder="Search by phone, username, email or name" autocomplete="off">
+            <datalist id="clientList"></datalist>
+          </label>
+          <label class="f"><span class="lab">Client</span><select id="client"></select></label>
+          <div id="clientInfo" class="cust-info"></div>
+          <button class="add-link" id="addClient" type="button"><i class="fa-solid fa-user-plus"></i> Client not found? Add new client</button>
+          <p class="hint">The client's name &amp; address fill the parties clause. The provider is your business profile from Settings.</p>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Clauses</summary>
+        <div class="gbody">
+          <p class="hint">Standard IT-services clauses are pre-filled and fully editable. Add, remove or reword to fit the engagement.</p>
+          <div class="rep" data-field="clauses" data-cols="clause" data-seed="clauses" data-add="Add clause"></div>
+        </div>
+      </details>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="btnSave" style="flex:1"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        <button class="btn btn-navy" id="btnPrint" style="flex:1;display:none"><i class="fa-solid fa-print"></i> Print / PDF</button>
+      </div>
+
+      <details class="grp">
+        <summary>Recent agreements</summary>
+        <div class="gbody"><div id="recent"></div></div>
+      </details>
+    </aside>
+
+    <div class="sheet-wrap"><div id="preview" style="width:100%;max-width:780px"></div></div>
+  </div>
+</div>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/customer-form.js"></script>
+<script src="assets/js/core/project-doc.js"></script>
+<script src="assets/js/pages/project.js"></script>
+</body>
+</html>

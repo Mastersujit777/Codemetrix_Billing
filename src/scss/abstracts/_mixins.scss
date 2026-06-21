@@ -1,0 +1,22 @@
+// ===== Mixins =====
+
+// Brand gradient used on the primary button, document accent bar and totals.
+@mixin gradient($from, $to, $angle: 135deg) {
+  background: linear-gradient($angle, $from, $to);
+}
+
+// Uppercase eyebrow / section label.
+@mixin eyebrow($color: $muted, $size: 11px) {
+  font-size: $size;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: $color;
+}
+
+// Soft focus ring matching the brand cyan.
+@mixin focus-ring($color: $cyan) {
+  outline: none;
+  border-color: $color;
+  box-shadow: 0 0 0 3px rgba($color, .15);
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/img/Codemetrix-Horizontal-logo.png">
+<title>Register · CodeMetrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header id="nav"></header>
+<div class="wrap">
+  <div class="page-head">
+    <div><h2>Document register</h2><div class="sub">Every saved document — receipt vouchers, tax invoices, quotations, proposals, scopes of work &amp; agreements. Reconcile the GST bills into GSTR-1 each month.</div></div>
+    <button class="btn btn-navy" id="csv"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+  </div>
+
+  <div class="card card-pad" style="margin-bottom:16px">
+    <div class="dash-filters">
+      <label class="f"><span class="lab">Branch</span><select id="fCentre"><option value="">All branches</option></select></label>
+      <label class="f"><span class="lab">Service</span><select id="fService"><option value="">All services</option></select></label>
+      <label class="f"><span class="lab">Type</span><select id="fType">
+        <option value="">All types</option>
+        <optgroup label="GST bills"><option value="RV">Receipt vouchers</option><option value="INV">Tax invoices</option></optgroup>
+        <optgroup label="Project documents"><option value="QUO">Quotations</option><option value="PROP">Proposals</option><option value="SOW">Scopes of work</option><option value="AGR">Agreements</option></optgroup>
+      </select></label>
+      <label class="f"><span class="lab">Year</span><select id="fYear"></select></label>
+      <label class="f"><span class="lab">Month</span><select id="fMonth"></select></label>
+      <label class="f"><span class="lab">From</span><input id="fFrom" type="date"></label>
+      <label class="f"><span class="lab">To</span><input id="fTo" type="date"></label>
+      <label class="f"><span class="lab">Search</span><input id="fSearch" placeholder="number or customer"></label>
+      <button class="btn btn-ghost btn-sm" id="fReset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+    </div>
+  </div>
+
+  <div class="card"><div class="table-responsive"><table class="grid">
+    <thead><tr><th>Number</th><th>Date</th><th>Type</th><th>Customer / client</th><th>Service / project</th><th class="r">Taxable</th><th class="r">Tax</th><th class="r">Total</th><th class="r">Net</th><th class="r"></th></tr></thead>
+    <tbody id="rows"></tbody>
+    <tfoot id="foot"></tfoot>
+  </table></div></div>
+</div>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/doc.js"></script>
+<script src="assets/js/core/project-doc.js"></script>
+<script src="assets/js/pages/documents.js"></script>
+</body>
+</html>

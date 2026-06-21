@@ -1,0 +1,32 @@
+// ===== Print: show only the document =====
+
+@media print {
+  @page { size: A4; margin: 12mm; }
+
+  body { background: #fff; }
+
+  .cm-navbar,
+  .panel,
+  .page-head,
+  .no-print,
+  .cm-toast-container,
+  .modal,
+  .modal-backdrop { display: none !important; }
+
+  .wrap { padding: 0; max-width: none; }
+  .bill { display: block; }
+
+  .doc {
+    box-shadow: none;
+    min-height: auto;
+    padding: 0 4mm;
+    max-width: none;
+
+    &::before { display: none; }
+  }
+}
+
+@media (max-width: 880px) {
+  .bill { grid-template-columns: 1fr; }
+  .panel { position: static; }
+}

@@ -1,0 +1,75 @@
+// ===== Buttons =====
+// Built on Bootstrap's .btn; brand variants override the default theme colours.
+// Loaded after Bootstrap so single-class specificity is enough to win.
+
+.btn {
+  font-family: $font-sans;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 9px 16px;
+  border-radius: $radius-sm;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: filter .15s, background .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  &:hover { filter: brightness(1.05); }
+}
+
+.btn-primary {
+  @include gradient($cyan, $cyan-deep);
+  color: #fff;
+  --bs-btn-bg: #{$cyan};
+  --bs-btn-border-color: #{$cyan};
+}
+
+.btn-navy {
+  background: $navy;
+  color: #fff;
+}
+
+.btn-ghost {
+  background: #fff;
+  border-color: $line-2;
+  color: $navy;
+}
+
+.btn-danger {
+  background: $red;
+  border-color: $red;
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 6px 11px;
+  font-size: 12px;
+  border-radius: 7px;
+}
+
+// Inline icon button used in table rows and the advances list.
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $muted;
+  font-size: 13px;
+  padding: 5px 7px;
+  border-radius: 6px;
+
+  &:hover { background: #eef2f6; color: $navy; }
+  &.del:hover { background: #fdecee; color: $red; }
+}
+
+// Bare text link styled as an action ("+ add advance").
+.add-link {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $cyan-deep;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}

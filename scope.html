@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/img/Codemetrix-Horizontal-logo.png">
+<title>Scope of Work · CodeMetrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-doctype="SOW">
+<header id="nav"></header>
+<div class="wrap">
+  <div class="page-head">
+    <div><h2>Scope of Work</h2><div class="sub">The agreed definition of work, deliverables and boundaries. <a href="project.html">← all project documents</a></div></div>
+  </div>
+
+  <div class="bill">
+    <aside class="panel">
+      <details class="grp" open>
+        <summary>Document</summary>
+        <div class="gbody">
+          <div class="row3">
+            <label class="f"><span class="lab">Date</span><input id="docDate" type="date"></label>
+            <label class="f"><span class="lab">FY</span><input id="fy" class="mono"></label>
+            <label class="f"><span class="lab">Seq #</span><input id="seq" class="mono" type="number" min="1"></label>
+          </div>
+          <label class="f"><span class="lab">Number</span><input id="docNoShort" class="mono" readonly style="background:#f0f4f8"></label>
+          <label class="f"><span class="lab">Project title</span><input data-field="projectTitle" placeholder="e.g. ERP Module – Phase 1"></label>
+          <label class="f"><span class="lab">Signature line</span>
+            <select data-field="signMode">
+              <option value="sign">Signature space</option>
+              <option value="system">System generated — no signature</option>
+            </select>
+          </label>
+          <label class="f"><span class="lab">Background</span><textarea data-field="overview" rows="3" placeholder="Context — why this work is being done."></textarea></label>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Client</summary>
+        <div class="gbody">
+          <label class="f"><span class="lab">Find client</span>
+            <input id="clientSearch" list="clientList" placeholder="Search by phone, username, email or name" autocomplete="off">
+            <datalist id="clientList"></datalist>
+          </label>
+          <label class="f"><span class="lab">Client</span><select id="client"></select></label>
+          <div id="clientInfo" class="cust-info"></div>
+          <button class="add-link" id="addClient" type="button"><i class="fa-solid fa-user-plus"></i> Client not found? Add new client</button>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Objectives &amp; scope</summary>
+        <div class="gbody">
+          <span class="lab" style="display:block">Objectives</span>
+          <div class="rep" data-field="objectives" data-cols="text" data-add="Add objective"></div>
+          <span class="lab" style="display:block;margin-top:12px">In scope</span>
+          <div class="rep" data-field="inScope" data-cols="text" data-add="Add in-scope item"></div>
+          <span class="lab" style="display:block;margin-top:12px">Out of scope</span>
+          <div class="rep" data-field="outScope" data-cols="text" data-add="Add out-of-scope item"></div>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Deliverables &amp; milestones</summary>
+        <div class="gbody">
+          <span class="lab" style="display:block">Deliverables</span>
+          <div class="rep" data-field="deliverables" data-cols="named" data-add="Add deliverable"></div>
+          <span class="lab" style="display:block;margin-top:12px">Milestones</span>
+          <div class="rep" data-field="milestones" data-cols="mile" data-add="Add milestone"></div>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Assumptions &amp; acceptance</summary>
+        <div class="gbody">
+          <span class="lab" style="display:block">Assumptions &amp; dependencies</span>
+          <div class="rep" data-field="assumptions" data-cols="text" data-add="Add assumption"></div>
+          <label class="f" style="margin-top:12px"><span class="lab">Acceptance criteria</span><textarea data-field="acceptance" rows="3" placeholder="How deliverables are reviewed and signed off."></textarea></label>
+          <div class="row2" style="margin-top:6px">
+            <label class="f"><span class="lab">Commercials (₹, optional)</span><input data-field="investment" class="mono" type="number" placeholder="0"></label>
+            <label class="f"><span class="lab">Note</span><input data-field="investmentNote" placeholder="e.g. fixed price + GST"></label>
+          </div>
+        </div>
+      </details>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="btnSave" style="flex:1"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        <button class="btn btn-navy" id="btnPrint" style="flex:1;display:none"><i class="fa-solid fa-print"></i> Print / PDF</button>
+      </div>
+
+      <details class="grp">
+        <summary>Recent scopes of work</summary>
+        <div class="gbody"><div id="recent"></div></div>
+      </details>
+    </aside>
+
+    <div class="sheet-wrap"><div id="preview" style="width:100%;max-width:780px"></div></div>
+  </div>
+</div>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/customer-form.js"></script>
+<script src="assets/js/core/project-doc.js"></script>
+<script src="assets/js/pages/project.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+// ===== A4 document (receipt voucher / tax invoice) =====
+
+// On-screen preview wrapper (register page modal): grey backing sheet, scrolls
+// horizontally on narrow screens so the full-width document stays readable.
+.doc-preview {
+  display: flex;
+  justify-content: center;
+  background: $bg;
+  padding: 14px;
+  border-radius: 8px;
+  overflow-x: auto;
+
+  .doc { flex: 0 0 auto; min-height: auto; }
+}
+
+.doc {
+  background: $paper;
+  width: 100%;
+  max-width: 780px;
+  min-height: 1000px;
+  padding: 44px 46px;
+  box-shadow: 0 8px 40px rgba($navy, .12);
+  border-radius: 3px;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; right: 0;
+    height: 7px;
+    background: linear-gradient(90deg, $navy 0 55%, $cyan 55% 80%, $green 80% 100%);
+    border-radius: 3px 3px 0 0;
+  }
+}
+
+.d-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.d-co {
+  .d-logo { margin-bottom: 4px; }
+  .d-logo .cm-logo { height: 60px; width: auto; display: block; max-width: 320px; }
+
+  .name {
+    font-size: 23px;
+    font-weight: 800;
+    color: $navy;
+    letter-spacing: -.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .sq { width: 13px; height: 13px; background: $cyan; border-radius: 2px; }
+  }
+
+  .tag  { font-size: 11px; color: $muted; margin-top: 2px; font-weight: 500; }
+  .addr { font-size: 11px; color: $muted; margin-top: 9px; max-width: 280px; line-height: 1.5; }
+}
+
+.d-ids {
+  font-family: $font-mono;
+  font-size: 10.5px;
+  margin-top: 9px;
+  line-height: 1.7;
+
+  b { color: $navy; font-weight: 600; }
+}
+
+.d-title {
+  text-align: right;
+  flex-shrink: 0;
+
+  .t {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #fff;
+    background: $navy;
+    padding: 7px 15px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  &.rv .t { background: $green-deep; }
+
+  .num  { font-family: $font-mono; font-size: 14px; font-weight: 600; color: $navy; margin-top: 12px; }
+  .date { font-size: 11px; color: $muted; margin-top: 4px; font-family: $font-mono; }
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid $line;
+
+  .blk {
+    &.right { text-align: right; }
+
+    .h  { @include eyebrow($cyan-deep, 9.5px); letter-spacing: .1em; margin-bottom: 6px; }
+    .nm { font-size: 14px; font-weight: 700; }
+    .ln { font-size: 11.5px; color: $muted; margin-top: 3px; line-height: 1.5;
+          b { color: $ink; }
+          &.mono { font-family: $font-mono; font-size: 11px; } }
+  }
+}
+
+.chips { margin-top: 10px; }
+
+.chip {
+  font-size: 10px;
+  font-family: $font-mono;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: #eef6fb;
+  color: $cyan-deep;
+  border: 1px solid #d3e9f4;
+
+  &.enr { background: #eefbf4; color: $green-deep; border-color: #cdeede; }
+}
+
+table.items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 26px;
+  font-size: 12px;
+
+  thead th {
+    background: $navy;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 10px 11px;
+    text-align: right;
+
+    &:first-child { text-align: left; border-radius: 5px 0 0 5px; }
+    &:last-child  { border-radius: 0 5px 5px 0; }
+  }
+
+  tbody td {
+    padding: 13px 11px;
+    border-bottom: 1px solid $line;
+    text-align: right;
+    vertical-align: top;
+
+    &:first-child { text-align: left; }
+  }
+}
+
+.it-desc { font-weight: 600; }
+.it-sub  { font-size: 10.5px; color: $muted; margin-top: 3px; }
+.num-c   { font-family: $font-mono; font-weight: 500; }
+
+.totals {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-end;
+
+  .box { width: 300px; }
+
+  .tr {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 6px 0;
+    color: $muted;
+
+    .v { font-family: $font-mono; color: $ink; font-weight: 500; }
+    &.adj .v { color: $green-deep; }
+    &.sep { border-top: 1px solid $line; margin-top: 4px; padding-top: 8px; }
+  }
+
+  .grand {
+    margin-top: 8px;
+    padding: 13px 14px;
+    @include gradient($navy, $navy-2);
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &.rv { @include gradient($green-deep, $green); }
+
+    .lab { @include eyebrow(#fff, 11px); }
+    .v   { font-family: $font-mono; font-size: 19px; font-weight: 700; }
+  }
+}
+
+.words {
+  margin-top: 20px;
+  font-size: 11.5px;
+
+  .k { @include eyebrow($muted, 9.5px); letter-spacing: .1em; margin-bottom: 3px; }
+  .v { font-weight: 600; font-style: italic; }
+}
+
+// Payment mode / reference line.
+.payln {
+  margin-top: 12px;
+  font-size: 11.5px;
+  color: $ink;
+
+  .k {
+    @include eyebrow($muted, 9.5px);
+    letter-spacing: .08em;
+    display: inline;
+    margin-right: 4px;
+  }
+}
+
+.d-foot {
+  margin-top: 34px;
+  padding-top: 20px;
+  border-top: 1px solid $line;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.note {
+  font-size: 10.5px;
+  color: $muted;
+  max-width: 330px;
+  line-height: 1.6;
+
+  .nh {
+    font-weight: 700;
+    color: $navy;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    font-size: 9px;
+    margin-bottom: 4px;
+    display: block;
+  }
+}
+
+.sign {
+  text-align: center;
+  flex-shrink: 0;
+
+  .line { width: 170px; border-top: 1.5px solid $ink; margin-bottom: 6px; }
+  .for  { font-size: 11px; font-weight: 700; color: $navy; }
+  .role { font-size: 10px; color: $muted; margin-top: 1px; }
+}
+
+// Green-initiative footer message.
+.eco {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 600;
+  color: $green-deep;
+  background: #eefbf4;
+  border: 1px solid #cdeede;
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+  line-height: 1.5;
+
+  svg { flex: 0 0 auto; }
+  b { font-weight: 800; }
+}
+
+.declare {
+  margin-top: 14px;
+  font-size: 9.5px;
+  color: $muted-2;
+  text-align: center;
+  border-top: 1px dashed $line;
+  padding-top: 10px;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/img/Codemetrix-Horizontal-logo.png">
+<title>Dashboard · CodeMetrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header id="nav"></header>
+<div class="wrap">
+  <div class="page-head">
+    <div><h2>Dashboard</h2><div class="sub">Receipts, invoices and GST at a glance. Filter by year, month or a custom date range.</div></div>
+  </div>
+
+  <div class="card card-pad" style="margin-bottom:18px">
+    <div class="dash-filters">
+      <label class="f"><span class="lab">Service centre</span><select id="fCentre"></select></label>
+      <label class="f"><span class="lab">Year</span><select id="fYear"></select></label>
+      <label class="f"><span class="lab">Month</span><select id="fMonth"></select></label>
+      <label class="f"><span class="lab">From</span><input id="fFrom" type="date"></label>
+      <label class="f"><span class="lab">To</span><input id="fTo" type="date"></label>
+      <button class="btn btn-ghost btn-sm" id="btnReset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+    </div>
+    <div class="quick" style="margin-top:12px">
+      <button data-range="month">This month</button>
+      <button data-range="fy">This financial year</button>
+      <button data-range="year">This calendar year</button>
+      <button data-range="all">All time</button>
+    </div>
+    <p class="hint" id="rangeNote" style="margin-top:10px"></p>
+  </div>
+
+  <div class="stat-grid" id="stats"></div>
+
+  <div class="dash-cols">
+    <div class="card">
+      <div class="card-pad" style="border-bottom:1px solid var(--line)"><div class="section-title"><i class="fa-solid fa-calendar-days"></i> Monthly breakdown</div></div>
+      <div class="table-responsive"><table class="grid" id="byMonth"></table></div>
+    </div>
+    <div class="card">
+      <div class="card-pad" style="border-bottom:1px solid var(--line)"><div class="section-title"><i class="fa-solid fa-user-group"></i> Top customers</div></div>
+      <div class="table-responsive"><table class="grid" id="byCustomer"></table></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <div class="card-pad" style="border-bottom:1px solid var(--line)"><div class="section-title"><i class="fa-solid fa-location-dot"></i> By service centre</div></div>
+    <div class="table-responsive"><table class="grid" id="byCentre"></table></div>
+  </div>
+</div>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/pages/dashboard.js"></script>
+</body>
+</html>

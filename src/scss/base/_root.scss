@@ -1,0 +1,9 @@
+// ===== CSS custom properties =====
+// Emit every design token as a --var so inline styles in the HTML and the
+// strings built by assets/js/core/doc.js keep resolving at runtime.
+
+:root {
+  @each $name, $value in $css-vars {
+    --#{$name}: #{$value};
+  }
+}

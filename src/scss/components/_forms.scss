@@ -1,0 +1,56 @@
+// ===== Forms =====
+// Restyles Bootstrap's .form-control / .form-select to the brand input look.
+
+label.f { display: block; margin-top: 14px; }
+
+label.f .lab,
+.lab {
+  font-size: 11px;
+  font-weight: 600;
+  color: $muted;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select,
+textarea,
+.form-control,
+.form-select {
+  width: 100%;
+  font-family: $font-sans;
+  font-size: 13px;
+  color: $ink;
+  padding: 9px 11px;
+  border: 1px solid $line-2;
+  border-radius: $radius-sm;
+  background: #fbfcfe;
+  transition: border-color .15s, box-shadow .15s;
+
+  &.mono { font-family: $font-mono; font-weight: 500; }
+
+  &:focus { @include focus-ring; background: #fff; }
+}
+
+textarea { resize: vertical; min-height: 54px; }
+
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: $ink;
+
+  input { width: auto; }
+}
+
+.hint {
+  font-size: 10.5px;
+  color: $muted-2;
+  margin-top: 6px;
+  line-height: 1.45;
+}

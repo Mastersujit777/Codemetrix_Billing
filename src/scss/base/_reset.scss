@@ -1,0 +1,22 @@
+// ===== Base / Reboot tweaks =====
+// Bootstrap's Reboot handles the bulk of normalisation; these are the
+// brand-specific base rules layered on top.
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: $font-sans;
+  background: $bg;
+  color: $ink;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.muted { color: $muted; }
+
+.mono { font-family: $font-mono; }

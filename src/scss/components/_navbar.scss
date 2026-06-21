@@ -1,0 +1,85 @@
+// ===== Top navigation =====
+// Built on Bootstrap's .navbar markup, restyled with the brand gradient.
+
+.cm-navbar {
+  @include gradient($navy, $navy-2);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+
+  .nav-in {
+    max-width: $wrap-max;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 24px;
+    height: $nav-height;
+    width: 100%;
+  }
+
+  .brand {
+    font-weight: 800;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+
+    small {
+      font-weight: 500;
+      color: #9fb4cc;
+      font-size: 11px;
+      margin-left: 2px;
+    }
+
+    .sq {
+      width: 11px;
+      height: 11px;
+      background: $cyan;
+      border-radius: 2px;
+      box-shadow: 0 0 0 3px rgba($cyan, .22);
+    }
+
+    // white pill so the full-colour logo reads on the dark navbar
+    .brand-logo {
+      background: #fff;
+      border-radius: 8px;
+      padding: 4px 9px;
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
+
+      img { height: 24px; width: auto; display: block; }
+    }
+  }
+
+  .cm-links {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+
+    a {
+      font-size: 13px;
+      font-weight: 600;
+      color: #b9c8db;
+      padding: 8px 14px;
+      border-radius: 7px;
+      transition: .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      &:hover {
+        color: #fff;
+        background: rgba(#fff, .08);
+      }
+
+      &.active {
+        color: #fff;
+        background: rgba($cyan, .22);
+      }
+    }
+  }
+}

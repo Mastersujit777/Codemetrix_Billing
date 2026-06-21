@@ -1,0 +1,60 @@
+// ===== Dashboard layout =====
+
+.dash-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+
+  .f { margin: 0; min-width: 150px; flex: 1 1 150px; }
+  .btn { flex: 0 0 auto; }
+}
+
+// Quick-range chips.
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  button {
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 13px;
+    border: 1px solid $line-2;
+    background: #fbfcfe;
+    color: $muted;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .15s;
+
+    &:hover { color: $navy; border-color: $cyan; background: #fff; }
+  }
+}
+
+// Two-column section grid below the stat tiles.
+.dash-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+// Mini volume bars in the monthly breakdown.
+.bar-wrap {
+  background: #eef2f6;
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, $cyan, $cyan-deep);
+  min-width: 2px;
+}
+
+@media (max-width: 880px) {
+  .dash-cols { grid-template-columns: 1fr; }
+}

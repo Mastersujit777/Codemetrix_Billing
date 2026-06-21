@@ -1,0 +1,58 @@
+// ===== CodeMetrix Billing — design tokens =====
+// Single source of truth for colours, type and spacing.
+// Compile-time SCSS variables drive the partials; they are also emitted as
+// CSS custom properties (see base/_root.scss) so inline styles and the JS
+// renderer can keep using var(--cyan-deep), var(--red), etc.
+
+// Brand palette
+$navy:        #0b1f3a;
+$navy-2:      #13304f;
+$ink:         #0f1b2d;
+
+$cyan:        #06b6d4;
+$cyan-deep:   #0891b2;
+$green:       #10b981;
+$green-deep:  #059669;
+$red:         #cf3b46;
+
+// Surfaces & lines
+$paper:       #fff;
+$bg:          #eef2f6;
+$card:        #fff;
+$line:        #dde4ec;
+$line-2:      #c9d3df;
+
+// Text
+$muted:       #5b6b80;
+$muted-2:     #8595a8;
+
+// Typography
+$font-sans: 'Plus Jakarta Sans', -apple-system, 'Segoe UI', Roboto, sans-serif;
+$font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// Layout
+$wrap-max:    1180px;
+$radius:      12px;
+$radius-sm:   8px;
+$nav-height:  58px;
+
+// Map used to emit CSS custom properties so nothing breaks at runtime.
+$css-vars: (
+  navy:       $navy,
+  navy-2:     $navy-2,
+  ink:        $ink,
+  cyan:       $cyan,
+  cyan-deep:  $cyan-deep,
+  green:      $green,
+  green-deep: $green-deep,
+  red:        $red,
+  paper:      $paper,
+  bg:         $bg,
+  card:       $card,
+  line:       $line,
+  line-2:     $line-2,
+  muted:      $muted,
+  muted-2:    $muted-2,
+  sans:       $font-sans,
+  mono:       $font-mono,
+);

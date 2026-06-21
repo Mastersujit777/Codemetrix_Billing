@@ -1,0 +1,79 @@
+// ===== Mobile / responsive — app-style layout on small screens =====
+
+// Smooth momentum scrolling for the horizontally-scrollable data tables.
+.table-responsive { -webkit-overflow-scrolling: touch; }
+
+@media (max-width: 768px) {
+
+  body { padding-bottom: 0; }
+
+  // ---- page shell ----
+  .wrap { padding: 16px 14px 88px; }       // bottom space for the tab bar
+  h2 { font-size: 18px; }
+  .page-head { flex-direction: column; align-items: stretch; gap: 12px; }
+  .page-head .btn { width: 100%; justify-content: center; }
+
+  // ---- top bar shrinks to just the brand; links become a bottom tab bar ----
+  .cm-navbar .nav-in { height: 52px; padding: 0 16px; gap: 0; }
+  .cm-navbar .brand { font-size: 15px; }
+
+  .cm-navbar .cm-links {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    margin: 0;
+    gap: 0;
+    padding: 6px 4px;
+    @include gradient($navy, $navy-2);
+    border-top: 1px solid rgba(#fff, .08);
+    box-shadow: 0 -4px 18px rgba($navy, .25);
+    z-index: 1040;
+  }
+
+  .cm-navbar .cm-links a {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 2px;
+    font-size: 9.5px;
+    font-weight: 600;
+    border-radius: 9px;
+    white-space: nowrap;
+
+    i { font-size: 17px; }
+    &.active { background: rgba($cyan, .22); }
+  }
+
+  // ---- forms / filters stack to one column ----
+  .row2, .row3 { grid-template-columns: 1fr; }
+  .dash-filters .f { flex: 1 1 100%; min-width: 0; }
+  .dash-filters .btn { width: 100%; }
+  .dash-cols { grid-template-columns: 1fr; }
+
+  // ---- dashboard stat tiles: two per row ----
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .stat { padding: 13px 14px; }
+  .stat .v { font-size: 19px; }
+
+  // ---- billing: single column, full-width actions ----
+  .bill { grid-template-columns: 1fr; }
+  .panel { position: static; }
+  .panel .actions { flex-direction: column; }
+  .panel .actions .btn { width: 100%; }
+
+  // ---- bigger touch targets ----
+  .btn { padding: 11px 16px; }
+  .btn-icon { padding: 8px 10px; font-size: 15px; }
+
+  // ---- denser tables but still readable ----
+  table.grid thead th { padding: 9px 12px; }
+  table.grid tbody td { padding: 11px 12px; }
+
+  // ---- toast clears the bottom tab bar ----
+  .cm-toast-container { bottom: 84px; }
+}
+
+@media (max-width: 380px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .cm-navbar .cm-links a { font-size: 9px; }
+}

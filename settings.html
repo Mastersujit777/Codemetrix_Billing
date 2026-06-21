@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/img/Codemetrix-Horizontal-logo.png">
+<title>Settings · CodeMetrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header id="nav"></header>
+<div class="wrap" style="max-width:760px">
+  <div class="page-head"><div><h2>Settings</h2><div class="sub">These details print on every document. Set them once.</div></div></div>
+
+  <div class="card card-pad" style="margin-bottom:18px">
+    <h3 class="section-title"><i class="fa-solid fa-building"></i> Business profile</h3>
+    <label class="f"><span class="lab">Legal / trade name</span><input id="b_name"></label>
+    <label class="f"><span class="lab">Sub-line / tagline</span><input id="b_tag"></label>
+    <label class="f"><span class="lab">Registered address (principal place of business)</span><textarea id="b_addr"></textarea></label>
+    <div class="row2">
+      <label class="f"><span class="lab">GSTIN</span><input id="b_gstin" class="mono" placeholder="21XXXXXXXXXXXZX"></label>
+      <label class="f"><span class="lab">PAN</span><input id="b_pan" class="mono" placeholder="XXXXX0000X"></label>
+    </div>
+    <div class="row3">
+      <label class="f"><span class="lab">Udyam reg. no.</span><input id="b_udyam" class="mono" placeholder="UDYAM-OD-..."></label>
+      <label class="f"><span class="lab">Home state</span><select id="b_state" class="mono"></select></label>
+      <label class="f"><span class="lab">Email / phone</span><input id="b_contact"></label>
+    </div>
+    <p class="hint">Home state decides CGST+SGST (same state) vs IGST (other state) on each document. CodeMetrix = Odisha (21).</p>
+    <div style="margin-top:18px"><button class="btn btn-primary" id="saveBiz"><i class="fa-solid fa-floppy-disk"></i> Save profile</button></div>
+  </div>
+
+  <div class="card card-pad" style="margin-bottom:18px">
+    <h3 class="section-title"><i class="fa-solid fa-qrcode"></i> Payment details</h3>
+    <p class="hint" style="margin-bottom:12px">Your UPI and bank (NEFT) details print on every bill and quotation so clients can pay. The QR image is stored in this browser and travels with your backup.</p>
+    <label class="f"><span class="lab">UPI ID</span><input id="b_upi" class="mono" placeholder="name@bank"></label>
+    <div class="upi-qr-row">
+      <div class="upi-qr-prev" id="upiPrev"></div>
+      <div style="flex:1;min-width:0">
+        <span class="lab">Payment QR image</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+          <button class="btn btn-ghost btn-sm" id="upiPick"><i class="fa-solid fa-upload"></i> Upload QR</button>
+          <button class="btn btn-ghost btn-sm" id="upiClear" style="color:var(--red);border-color:#f0c6ca"><i class="fa-solid fa-xmark"></i> Remove</button>
+          <input type="file" id="upiFile" accept="image/*" style="display:none">
+        </div>
+        <p class="hint">Upload the BHIM / UPI QR screenshot from your bank app (a square PNG works best). It appears on the printed documents under "Scan &amp; pay".</p>
+      </div>
+    </div>
+    <div class="lab" style="margin-top:18px;margin-bottom:0"><i class="fa-solid fa-building-columns"></i> Bank transfer / NEFT</div>
+    <div class="row2">
+      <label class="f"><span class="lab">Bank name</span><input id="b_bankName" placeholder="e.g. UCO Bank"></label>
+      <label class="f"><span class="lab">Account name</span><input id="b_bankAccName" placeholder="As per bank records"></label>
+    </div>
+    <div class="row2">
+      <label class="f"><span class="lab">Account number</span><input id="b_bankAccNo" class="mono" placeholder="Account no."></label>
+      <label class="f"><span class="lab">IFSC</span><input id="b_bankIfsc" class="mono" placeholder="IFSC code"></label>
+    </div>
+    <div style="margin-top:16px"><button class="btn btn-primary" id="savePay"><i class="fa-solid fa-floppy-disk"></i> Save payment details</button></div>
+  </div>
+
+  <div class="card card-pad" style="margin-bottom:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h3 class="section-title"><i class="fa-solid fa-location-dot"></i> Service centres</h3>
+      <button class="btn btn-ghost btn-sm" id="addCentre"><i class="fa-solid fa-plus"></i> Add centre</button>
+    </div>
+    <p class="hint" style="margin-bottom:6px">Declare each centre as an additional place of business on your GST registration. The code becomes the invoice-number prefix (e.g. CM/<b>BAL</b>/…).</p>
+    <div id="centres"></div>
+    <div style="margin-top:14px"><button class="btn btn-primary" id="saveCentres"><i class="fa-solid fa-floppy-disk"></i> Save centres</button></div>
+  </div>
+
+  <div class="card card-pad">
+    <h3 class="section-title"><i class="fa-solid fa-database"></i> Data</h3>
+    <p class="hint" style="margin-bottom:12px">All data is stored only in this browser. Back it up regularly; restore moves it to another machine.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-navy" id="backup"><i class="fa-solid fa-download"></i> Download backup (JSON)</button>
+      <button class="btn btn-ghost" id="restoreBtn"><i class="fa-solid fa-upload"></i> Restore from backup</button>
+      <input type="file" id="restoreFile" accept="application/json" style="display:none">
+      <button class="btn btn-ghost" id="reset" style="color:var(--red);border-color:#f0c6ca;margin-left:auto"><i class="fa-solid fa-trash-can"></i> Reset all data</button>
+    </div>
+  </div>
+</div>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/pages/settings.js"></script>
+</body>
+</html>

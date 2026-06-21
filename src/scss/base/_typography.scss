@@ -1,0 +1,12 @@
+// ===== Typography =====
+
+h2 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  color: $navy;
+}
+
+.section-title {
+  @include eyebrow($navy, 13px);
+}

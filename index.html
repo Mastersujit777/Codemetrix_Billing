@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/img/Codemetrix-Horizontal-logo.png">
+<title>Billing · CodeMetrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- vendor: Bootstrap + Font Awesome (local) -->
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+<!-- app styles (compiled from src/scss/main.scss) — must load last -->
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header id="nav"></header>
+<div class="wrap">
+  <div class="page-head">
+    <div><h2>Billing</h2><div class="sub">Generate a receipt voucher for an advance, or a tax invoice on completion.</div></div>
+  </div>
+
+  <div class="bill">
+    <!-- control panel -->
+    <aside class="panel">
+      <details class="grp" open>
+        <summary>Document</summary>
+        <div class="gbody">
+          <span class="lab" style="display:block;margin-top:6px">Type</span>
+          <div class="seg green" id="segType">
+            <button data-v="RV" class="on">Receipt Voucher</button>
+            <button data-v="INV">Tax Invoice</button>
+          </div>
+          <p class="hint" id="typeHint">For an advance / installment received before the programme is delivered.</p>
+          <div class="row2">
+            <label class="f"><span class="lab">Service centre</span><select id="centre"></select></label>
+            <label class="f"><span class="lab">Date</span><input id="docDate" type="date"></label>
+          </div>
+          <div class="row3">
+            <label class="f"><span class="lab">FY</span><input id="fy" class="mono"></label>
+            <label class="f"><span class="lab">Seq #</span><input id="seq" class="mono" type="number" min="1"></label>
+            <label class="f"><span class="lab">Number</span><input id="docNoShort" class="mono" readonly style="background:#f0f4f8"></label>
+          </div>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Student / client</summary>
+        <div class="gbody">
+          <label class="f"><span class="lab">Find customer</span>
+            <input id="custSearch" list="custList" placeholder="Search by phone, username, email or name" autocomplete="off">
+            <datalist id="custList"></datalist>
+          </label>
+          <label class="f"><span class="lab">Customer</span><select id="customer"></select></label>
+          <div id="custInfo" class="cust-info"></div>
+          <button class="add-link" id="addCust" type="button"><i class="fa-solid fa-user-plus"></i> Customer not found? Add new customer</button>
+          <p class="hint">Search an existing customer by phone, username, email or name — their details fill the bill automatically. If they don't exist, add them (unique phone, email &amp; username).</p>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Amounts</summary>
+        <div class="gbody">
+          <label class="f"><span class="lab">Service</span><select id="service"></select></label>
+          <label class="f"><span class="lab">GST rate</span>
+            <select id="gstRate" class="mono">
+              <option value="0">0% — No tax (exempt)</option>
+              <option value="5">5%</option>
+              <option value="12">12%</option>
+              <option value="18" selected>18%</option>
+              <option value="28">28%</option>
+            </select>
+          </label>
+          <span class="lab" style="display:block;margin-top:14px">Fee is</span>
+          <div class="seg" id="segIncl">
+            <button data-v="incl" class="on">GST-inclusive</button>
+            <button data-v="excl">GST extra</button>
+          </div>
+          <label class="f"><span class="lab">Total programme fee (₹)</span><input id="fee" class="mono" type="number"></label>
+
+          <div id="rvFields">
+            <label class="f"><span class="lab">Installment label</span><input id="instLabel" value="1st installment"></label>
+            <label class="f"><span class="lab">Amount received now (₹)</span><input id="instAmt" class="mono" type="number" placeholder="0"></label>
+          </div>
+
+          <div id="invFields" style="display:none">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+              <span class="lab" style="margin:0">Advances to adjust</span>
+              <button class="btn-icon" id="pullAdv" title="Load receipt vouchers already issued for this enrollment"><i class="fa-solid fa-rotate"></i> pull receipts</button>
+            </div>
+            <div id="advList"></div>
+            <button class="add-link" id="addAdv"><i class="fa-solid fa-plus"></i> add advance manually</button>
+            <label class="f"><span class="lab">Final payment received now (₹)</span><input id="invLastAmt" class="mono" type="number" placeholder="0"></label>
+            <p class="hint">GST is charged on the full fee. All pulled advances <b>and</b> the final payment above are subtracted to show the net amount still due (enter 0 if everything is already paid).</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary>Payment</summary>
+        <div class="gbody">
+          <label class="f"><span class="lab">Payment mode</span>
+            <select id="payMode">
+              <option value="Cash">Cash</option>
+              <option value="UPI">UPI</option>
+              <option value="Card">Card</option>
+              <option value="Bank transfer">Bank transfer (NEFT / IMPS / RTGS)</option>
+              <option value="Cheque">Cheque</option>
+            </select>
+          </label>
+          <label class="f" id="payRefWrap" style="display:none"><span class="lab" id="payRefLab">Transaction ID</span><input id="payRef" class="mono" placeholder="Transaction / reference no."></label>
+          <p class="hint">Cash needs no reference. For UPI, card, bank transfer or cheque, enter the transaction / reference number — it prints on the document.</p>
+          <label class="f"><span class="lab">Signature line</span>
+            <select id="signMode">
+              <option value="sign">Signature space</option>
+              <option value="system">System generated — no signature</option>
+            </select>
+          </label>
+        </div>
+      </details>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="btnSave" style="flex:1"><i class="fa-solid fa-floppy-disk"></i> Save to register</button>
+        <button class="btn btn-navy" id="btnPrint" style="flex:1;display:none"><i class="fa-solid fa-print"></i> Print / PDF</button>
+      </div>
+    </aside>
+
+    <!-- live preview -->
+    <div class="sheet-wrap"><div id="preview" style="width:100%;max-width:780px"></div></div>
+  </div>
+</div>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/doc.js"></script>
+<script src="assets/js/core/customer-form.js"></script>
+<script src="assets/js/pages/billing.js"></script>
+</body>
+</html>

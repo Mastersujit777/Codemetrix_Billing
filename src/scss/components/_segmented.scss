@@ -1,0 +1,25 @@
+// ===== Segmented control (RV / Invoice, GST-inclusive / extra) =====
+
+.seg {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+
+  button {
+    flex: 1;
+    padding: 9px 6px;
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid $line-2;
+    background: #fbfcfe;
+    color: $muted;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: .15s;
+
+    &.on { background: $navy; color: #fff; border-color: $navy; }
+  }
+
+  &.green button.on { background: $green-deep; border-color: $green-deep; }
+}

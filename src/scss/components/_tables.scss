@@ -1,0 +1,44 @@
+// ===== Data tables =====
+// Layered on Bootstrap's .table; .grid keeps the original dense register look.
+
+table.grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  thead th {
+    background: #f5f8fb;
+    color: $muted;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 11px 16px;
+    border-bottom: 1px solid $line;
+
+    &.r { text-align: right; }
+  }
+
+  td.r { text-align: right; }
+
+  tbody td {
+    padding: 13px 16px;
+    border-bottom: 1px solid $line;
+    vertical-align: middle;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #f8fafc; }
+  tbody tr.row-click { cursor: pointer; }
+}
+
+.cell-main { font-weight: 700; color: $ink; }
+.cell-sub  { font-size: 11.5px; color: $muted; margin-top: 2px; }
+
+.empty {
+  padding: 46px 20px;
+  text-align: center;
+  color: $muted-2;
+  font-size: 13px;
+}

@@ -1,0 +1,11 @@
+// ===== Cards =====
+// Extends Bootstrap's .card with the brand border / radius.
+
+.card {
+  background: $card;
+  border: 1px solid $line;
+  border-radius: $radius;
+  overflow: hidden;
+}
+
+.card-pad { padding: 18px 20px; }

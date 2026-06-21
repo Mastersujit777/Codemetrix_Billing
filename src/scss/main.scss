@@ -1,0 +1,40 @@
+// ============================================================
+//  CodeMetrix Billing — main stylesheet
+//  Compiles to ../../assets/css/main.css
+//  Load order in HTML: bootstrap.min.css -> fontawesome -> main.css
+//  (main.css last so brand overrides win at single-class specificity)
+// ============================================================
+
+// 1. Abstracts — tokens & tools (no CSS output)
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+// 2. Base — runtime CSS vars, reset, type, print
+@import 'base/root';
+@import 'base/reset';
+@import 'base/typography';
+
+// 3. Layout
+@import 'layout/page';
+@import 'layout/billing';
+@import 'layout/dashboard';
+
+// 4. Components
+@import 'components/navbar';
+@import 'components/cards';
+@import 'components/tables';
+@import 'components/pills';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/segmented';
+@import 'components/modal';
+@import 'components/toast';
+@import 'components/stats';
+
+// 5. Document + print rules
+@import 'document/document';
+@import 'document/project';
+@import 'base/print';
+
+// 6. Responsive / mobile overrides (last so they win)
+@import 'base/responsive';

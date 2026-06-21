@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/img/Codemetrix-Horizontal-logo.png">
+<title>Services · CodeMetrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header id="nav"></header>
+<div class="wrap">
+  <div class="page-head">
+    <div><h2>Services</h2><div class="sub">Each service carries its SAC code and GST rate — applied automatically when billing.</div></div>
+    <button class="btn btn-primary" id="add"><i class="fa-solid fa-plus"></i> Add service</button>
+  </div>
+  <div class="card"><div class="table-responsive"><table class="grid">
+    <thead><tr><th>Service</th><th>Ref prefix</th><th>SAC</th><th class="r">GST rate</th><th>Default fee basis</th><th class="r">Actions</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div></div>
+  <p class="hint" style="margin-top:14px">Training &amp; commercial coaching use SAC 999293; software development uses SAC 998314. All three are taxed at 18%.</p>
+</div>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/pages/services.js"></script>
+</body>
+</html>
