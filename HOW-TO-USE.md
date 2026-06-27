@@ -59,8 +59,9 @@ It will:
 - load that snapshot into your local database (this **replaces** your local data)
 - apply any new database updates (migrations)
 
-When it says **"you may start working"**, open the app as usual
-(`python manage.py runserver`, then http://127.0.0.1:8000) and do your work.
+When it says **"you may start working"**, double-click **`start-app.bat`** to
+launch the app — it opens http://127.0.0.1:8000 in your browser automatically.
+Do your work, then press **Ctrl+C** in that window (or just close it) to stop the app.
 
 ### 2. Finish your turn
 Close the app, then double-click **`save-commit-push.bat`**.

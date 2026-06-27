@@ -7,7 +7,7 @@ echo ==================================================
 
 echo.
 echo [1/2] git pull ...
-git pull
+git pull origin prod
 if errorlevel 1 goto err
 
 echo.

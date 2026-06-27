@@ -27,7 +27,7 @@ if errorlevel 1 goto err
 :push
 echo.
 echo [4/4] git push ...
-git push
+git push origin prod
 if errorlevel 1 goto err
 
 echo.
