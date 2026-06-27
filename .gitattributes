@@ -1,0 +1,3 @@
+# The shared DB snapshot is plain SQL (UTF-8). Force LF and never apply CRLF
+# line-ending conversion, so Git on Windows can't corrupt the dump.
+db/snapshot.sql text eol=lf

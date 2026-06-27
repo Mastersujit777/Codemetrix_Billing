@@ -52,6 +52,53 @@ python manage.py runserver
 
 Database connection settings come from `.env` (see `config/settings.py`). The seed data matches the old first-run defaults; if the database is empty, the first request seeds it automatically. `python manage.py seed --force` re-seeds from scratch.
 
+### Team workflow — sharing data via Git (one user at a time)
+
+When the app isn't on a server and is used by a few people **one at a time**, the
+database is passed between them through Git as a SQL snapshot at
+`db/snapshot.sql` (a `pg_dump`, tracked in the repo). It carries the full
+database — billing data **and** the shared login accounts.
+
+**One-time setup per machine:** install PostgreSQL **17** (the snapshot must be
+restored with a matching major version), create the venv + `.env` as above. You
+don't need to `seed` — you'll restore the shared snapshot instead.
+
+**Each session — pass the baton (pull → work → push).** The two `.bat` files in
+the project root wrap the whole routine; just double-click them:
+
+- **`pull-load.bat`** (at the **start**) — runs `git pull`, then restores
+  `db/snapshot.sql` into your local database and applies migrations.
+- **`save-commit-push.bat`** (when you **finish**) — saves your local database to
+  `db/snapshot.sql`, then `git add` + `git commit` (the message is stamped with
+  the current date-time, e.g. `db snapshot: 2026-06-27 13:08:01`, so the last DB
+  commit is easy to spot) + `git push`.
+
+Equivalent manual commands if you prefer the terminal:
+```bash
+git pull                                   # get latest code + db/snapshot.sql
+powershell -ExecutionPolicy Bypass -File scripts\db-load.ps1    # restore snapshot + migrate
+#   ... use the app ...
+powershell -ExecutionPolicy Bypass -File scripts\db-save.ps1    # write db/snapshot.sql
+git add db/snapshot.sql
+git commit -m "db snapshot: <date time>"
+git push
+```
+
+Both scripts read credentials from `.env` and auto-locate `pg_dump`/`psql` under
+`C:\Program Files\PostgreSQL\*\bin`. `db-load.ps1` **replaces** your local data
+with the snapshot, so only run it at the start of your turn.
+
+**Rules that keep this safe (the snapshot can't be auto-merged):**
+- Strictly take turns: always `git pull` + `db-load` *before* working, and
+  `db-save` + `git push` *after*. Don't start until the previous person has pushed.
+- Agree on an explicit hand-off signal ("pushed — you're up").
+- If two people ever diverge, Git can't merge two snapshots; one set of changes
+  must be redone by hand. The turn-taking discipline above prevents this.
+
+`.gitattributes` pins `db/snapshot.sql` to LF so Windows line-ending conversion
+can't corrupt it; `.gitignore` tracks that one file while ignoring all other
+ad-hoc dumps (`backups/`, `*.dump`, `*.sql`).
+
 **Backend layout**
 ```
 manage.py                 Django entry point

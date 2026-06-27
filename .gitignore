@@ -11,3 +11,10 @@ env/
 # Django
 *.log
 db.sqlite3
+
+# Ad-hoc database backups (contain data — never commit)
+backups/
+*.dump
+*.sql
+# ...except the shared team snapshot, which IS tracked and passed via Git
+!db/snapshot.sql
