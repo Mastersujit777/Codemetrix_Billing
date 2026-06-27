@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/assets/img/Codemetrix-Horizontal-logo.png">
+<title>Sign in · CodeMetrix Billing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<style>
+  body { min-height: 100vh; display: flex; align-items: center; justify-content: center;
+         background: var(--bg, #eef2f7); padding: 24px; }
+  .login-card { width: 100%; max-width: 380px; background: #fff; border-radius: 16px;
+                box-shadow: 0 12px 40px rgba(16, 32, 56, .12); padding: 32px 28px; }
+  .login-logo { display: block; height: 40px; margin: 0 auto 6px; }
+  .login-sub { text-align: center; color: var(--muted, #5b6b80); font-size: 13px; margin-bottom: 22px; }
+  .login-card .f { display: block; margin-bottom: 14px; }
+  .login-card .lab { display: block; font-size: 12px; font-weight: 600; color: var(--muted, #5b6b80);
+                     margin-bottom: 6px; }
+  .login-card input { width: 100%; padding: 11px 12px; border: 1px solid #d6dee8; border-radius: 9px;
+                      font: inherit; font-size: 14px; }
+  .login-card input:focus { outline: none; border-color: var(--brand, #1f6feb);
+                            box-shadow: 0 0 0 3px rgba(31, 111, 235, .15); }
+  .login-btn { width: 100%; margin-top: 6px; padding: 11px; }
+  .login-err { background: #fdecec; color: #b42318; border: 1px solid #f6cecb; border-radius: 9px;
+               padding: 10px 12px; font-size: 13px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+  <form class="login-card" method="post" action="">
+    {% csrf_token %}
+    <img class="login-logo" src="/assets/img/Codemetrix-Horizontal-logo.png" alt="CodeMetrix">
+    <div class="login-sub">Billing · sign in to continue</div>
+
+    {% if form.errors %}
+      <div class="login-err"><i class="fa-solid fa-circle-exclamation"></i>
+        Invalid username or password. Please try again.</div>
+    {% endif %}
+
+    <label class="f">
+      <span class="lab">Username</span>
+      {{ form.username }}
+    </label>
+    <label class="f">
+      <span class="lab">Password</span>
+      {{ form.password }}
+    </label>
+
+    <input type="hidden" name="next" value="{{ next }}">
+    <button type="submit" class="btn btn-primary login-btn">
+      <i class="fa-solid fa-right-to-bracket"></i> Sign in
+    </button>
+  </form>
+</body>
+</html>

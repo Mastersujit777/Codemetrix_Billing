@@ -80,6 +80,18 @@
         color: #fff;
         background: rgba($cyan, .22);
       }
+
+      // Logout sits apart from the page links, with a red hover to read as an action.
+      &.nav-logout {
+        margin-left: 10px;
+        padding-left: 18px;
+        border-left: 1px solid rgba(#fff, .18);
+
+        &:hover {
+          color: #fff;
+          background: rgba(#ef4444, .85);
+        }
+      }
     }
   }
 }

@@ -2,20 +2,74 @@
 
 A self-contained, static GST billing app for CodeMetrix — generate **receipt vouchers** (for advances/installments) and **tax invoices** (on completion, adjusting advances), with customers, services, and an issued-document register all managed in one place. No backend, no build step.
 
-## Running it
+## Running it (Django + PostgreSQL)
 
-The app stores data in the browser's `localStorage`, which needs a stable origin. Two options:
+Data is now persisted in **PostgreSQL** through a thin Django backend instead of the browser's `localStorage`. The entire front-end (HTML, GST maths, numbering, rendering, printing) is unchanged — only the storage layer in `assets/js/core/store.js` was swapped to talk to a `/api/state/` endpoint.
 
-**Recommended — serve it locally:**
+**One-time setup:**
 ```bash
-cd codemetrix-billing
-python3 -m http.server 8000
-# open http://localhost:8000
+# 1. create the database in PostgreSQL (if not already done)
+#    e.g.  createdb codemetrix_billing
+
+# 2. create a virtualenv and install dependencies
+python -m venv .venv
+.venv\Scripts\activate            # Windows
+# source .venv/bin/activate       # macOS / Linux
+pip install -r requirements.txt
+
+# 3. configure the DB connection in .env (already present for local dev):
+#    DB_NAME / DB_USER / DB_PASSWORD / DB_HOST / DB_PORT
+
+# 4. create the tables and seed the default data
+python manage.py migrate
+python manage.py seed              # writes default business/centres/services/customer
+
+# 5. create the login account
+python manage.py createlogin       # default: admin / codemetrix (change it!)
 ```
 
-**Quick look — open `index.html` directly.** Works in Chrome/Firefox; some browsers (e.g. Safari) restrict `localStorage` on `file://`, so data may not persist. Serving locally avoids this.
+### Authentication
 
-To deploy for real, drop the folder on any static host (Netlify, GitHub Pages, S3, your existing static setup).
+The app is gated behind a login. Every page and the `/api/state/` API require an
+authenticated session; visiting any page while logged out redirects to `/login/`
+and back once you sign in. A **Logout** link sits at the end of the top nav.
+
+The default account is **`admin` / `codemetrix`** — change it immediately:
+
+```bash
+python manage.py createlogin --username admin --password "your-strong-password"
+# (re-running createlogin on an existing username just resets the password)
+```
+
+There is no public sign-up; accounts are created from the command line. All
+logins share the same single business dataset.
+
+**Run the app:**
+```bash
+python manage.py runserver
+# open http://127.0.0.1:8000
+```
+
+Database connection settings come from `.env` (see `config/settings.py`). The seed data matches the old first-run defaults; if the database is empty, the first request seeds it automatically. `python manage.py seed --force` re-seeds from scratch.
+
+**Backend layout**
+```
+manage.py                 Django entry point
+config/                   project settings + URL routing
+  settings.py             DB config (reads .env), middleware
+  urls.py                 /api/state/, /assets/*, and the .html pages
+billing/                  the app
+  models.py               Business / Centre / Service / Customer (typed columns)
+                          + Document / ProjectDoc (JSON snapshots) + Sequence
+  state.py                DB <-> JSON state translation (mirrors store.js shape)
+  views.py                GET/POST /api/state/  +  serves the front-end pages
+  defaults.py             seed data (mirror of store.js DEFAULTS)
+  management/commands/seed.py
+```
+
+Documents and project documents are stored as JSON snapshots because the front-end deliberately freezes the customer/business details onto each saved bill at issue time — so an edit to a customer never alters a previously issued invoice.
+
+To deploy for real, point `.env` at your production PostgreSQL, set `DJANGO_DEBUG=0`, a real `DJANGO_SECRET_KEY`, and serve via a WSGI server (gunicorn/uwsgi) behind nginx.
 
 ## First-time setup
 
@@ -45,17 +99,18 @@ Load order matters: `bootstrap.min.css` → `fontawesome/all.min.css` → `main.
 
 ```
 codemetrix-billing/
-├── dashboard.html      Receipts / invoices / GST overview, filterable by date
-├── index.html          Billing — generate RV / Tax Invoice (live A4 preview)
-├── customers.html      Manage students & clients (search + per-customer ledger)
-├── project.html        Project documents hub (quotation / proposal / SoW / agreement)
-├── quotation.html      Quotation generator (line items, GST, validity)
-├── proposal.html       Proposal generator (summary, approach, timeline, investment)
-├── scope.html          Scope of Work generator (objectives, in/out scope, milestones)
-├── agreement.html      Service Agreement generator (clauses + dual signatures)
-├── services.html       Manage services, SAC codes, GST rates
-├── documents.html      Register of every issued document + CSV export
-├── settings.html       Business profile, centres, data backup
+├── templates/          front-end pages, served by Django (URLs unchanged)
+│   ├── index.html          Billing — generate RV / Tax Invoice (live A4 preview)
+│   ├── dashboard.html      Receipts / invoices / GST overview, filterable by date
+│   ├── customers.html      Manage students & clients (search + per-customer ledger)
+│   ├── project.html        Project documents hub (quotation / proposal / SoW / agreement)
+│   ├── quotation.html      Quotation generator (line items, GST, validity)
+│   ├── proposal.html       Proposal generator (summary, approach, timeline, investment)
+│   ├── scope.html          Scope of Work generator (objectives, in/out scope, milestones)
+│   ├── agreement.html      Service Agreement generator (clauses + dual signatures)
+│   ├── services.html       Manage services, SAC codes, GST rates
+│   ├── documents.html      Register of every issued document + CSV export
+│   └── settings.html       Business profile, centres, data backup
 ├── assets/
 │   ├── css/
 │   │   └── main.css        compiled stylesheet (generated from src/scss/)

@@ -1,9 +1,14 @@
-/* CodeMetrix Billing — data layer (localStorage)
-   All app data lives under one key. Pages read/write via CM.store. */
+/* CodeMetrix Billing — data layer.
+   Previously persisted to localStorage; now persists to the Django backend
+   (PostgreSQL) via a single /api/state endpoint. The in-memory `db` object and
+   the public CM.store API are unchanged, so every page behaves exactly as
+   before — only where the data lives has changed. */
 window.CM = window.CM || {};
 CM.store = (function () {
-  const KEY = 'codemetrix.billing.v1';
+  const API = '/api/state/';
 
+  /* Kept as a fallback so the app still works in-memory if the backend is
+     unreachable — same seed data the old localStorage build started from. */
   const DEFAULTS = {
     business: {
       name: 'CodeMetrix',
@@ -38,9 +43,30 @@ CM.store = (function () {
     seq: {} // `${centre}:${type}:${fy}` -> last consumed number
   };
 
+  /* read a cookie value (used for the Django CSRF token) */
+  function cookie(name) {
+    const m = document.cookie.match('(?:^|; )' + name + '=([^;]*)');
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  /* Synchronous request to the backend. Keeping it synchronous preserves the
+     original localStorage semantics (load before pages run; writes complete
+     before the next read), so no page code needed to change. */
+  function apiRequest(method, body) {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, API, false);
+    if (body != null) {
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('X-CSRFToken', cookie('csrftoken')); // Django CSRF
+    }
+    xhr.send(body != null ? body : null);
+    if (xhr.status < 200 || xhr.status >= 300) throw new Error('HTTP ' + xhr.status);
+    return xhr.responseText;
+  }
+
   function load() {
     let raw = null;
-    try { raw = JSON.parse(localStorage.getItem(KEY)); } catch (e) { /* ignore */ }
+    try { raw = JSON.parse(apiRequest('GET')); } catch (e) { /* backend unavailable */ }
     const base = JSON.parse(JSON.stringify(DEFAULTS));
     if (raw && typeof raw === 'object') {
       for (const k in base) if (raw[k] !== undefined) base[k] = raw[k];
@@ -49,7 +75,10 @@ CM.store = (function () {
   }
 
   let db = load();
-  function save() { localStorage.setItem(KEY, JSON.stringify(db)); }
+  function save() {
+    try { apiRequest('POST', JSON.stringify(db)); }
+    catch (e) { console.error('CodeMetrix: failed to save to server', e); }
+  }
   function get() { return db; }
   function id(prefix) { return prefix + '_' + Math.random().toString(36).slice(2, 8); }
 

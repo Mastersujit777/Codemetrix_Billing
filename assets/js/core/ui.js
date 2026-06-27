@@ -88,7 +88,7 @@ CM.ui = (function () {
       <div class="nav-in">
         <a class="brand" href="index.html"><span class="brand-logo">${logoMark()}</span><small>Billing</small></a>
         <nav class="cm-links">${links.map(([h, t, icon]) =>
-          `<a href="${h}" class="${h === active ? 'active' : ''}"><i class="fa-solid ${icon}"></i>${t}</a>`).join('')}</nav>
+          `<a href="${h}" class="${h === active ? 'active' : ''}"><i class="fa-solid ${icon}"></i>${t}</a>`).join('')}<a href="/logout/" class="nav-logout" title="Sign out"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></nav>
       </div>`;
   }
 
