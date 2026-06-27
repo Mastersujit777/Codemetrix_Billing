@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict orJsHQJYgssp56LReUYMyQLwzQaBhUGq1MqomSObzDWRN4Ke3Q6iXOgQ31SLHlI
+\restrict GlXa1yncTKSRY7S23DcpeBU8uAD4NsfqyxsGkzNIStLKhlKRiBefmHEFuq24mH0
 
 -- Dumped from database version 17.10
 -- Dumped by pg_dump version 17.10
@@ -602,7 +602,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$870000$cwjxU8D2tueMKlbt6VYxm3$j3Snh4KTRWW5gEbQPFpNzvLsnmrIpIJkfOTAje0l1oE=	2026-06-26 22:55:19.943392+05:30	f	admin				f	t	2026-06-26 21:45:04.004223+05:30
+1	pbkdf2_sha256$870000$bejzdAT0CN6jPkYw5JJxZB$5/0sgZDAENPvsuCheYKAwkzYiw8a5qzlm6bbD8N8jfw=	2026-06-27 15:54:52.127493+05:30	f	admin				f	t	2026-06-27 15:54:04.845786+05:30
 \.
 
 
@@ -627,7 +627,7 @@ COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 --
 
 COPY public.billing_business (id, name, tag, address, gstin, pan, udyam, "stateName", "stateCode", contact, "upiId", "upiQr", "bankName", "bankAccName", "bankAccNo", "bankIfsc", extra) FROM stdin;
-13	CodeMetrix	Proprietorship · IT Training, Internships & Software Development	Kesura, Bhubaneswar, Khordha, Odisha – 752057				Odisha	21		codemetrix1@ucobank		UCO Bank	Codemetrix	25430210003343	UCBA0002543	{}
+7	CodeMetrix	Proprietorship · IT Training, Internships & Software Development	Kesura, Bhubaneswar, Khordha, Odisha – 752057				Odisha	21		codemetrix1@ucobank		UCO Bank	Codemetrix	25430210003343	UCBA0002543	{}
 \.
 
 
@@ -636,8 +636,9 @@ COPY public.billing_business (id, name, tag, address, gstin, pan, udyam, "stateN
 --
 
 COPY public.billing_centre (id, "position", code, name, address, extra) FROM stdin;
-25	0	BAL	Balipatna	Balipatna, Khordha, Odisha	{}
-26	1	KES	Kesura–Bhubaneswar	Kesura, Bhubaneswar, Odisha	{}
+16	0	BAL	Balipatna	Balipatna, Khordha, Odisha	{}
+17	1	KES	Kesura–Bhubaneswar	Kesura, Bhubaneswar, Odisha	{}
+18	2	PAT	Patia-Bhubaneswar	Patia, Nandan Vihar, Bhubaneswar	{}
 \.
 
 
@@ -646,7 +647,7 @@ COPY public.billing_centre (id, "position", code, name, address, extra) FROM std
 --
 
 COPY public.billing_customer (id, "position", cid, name, kind, username, address, "stateName", "stateCode", gstin, phone, email, "contactPersonName", "contactPersonPhone", notes, extra) FROM stdin;
-23	0	cus_demo	Demo Student	student	demo_student		Odisha	21		9000000000					{}
+6	0	cus_mn2hsj	M/S DIVIKSHA SALES MART	client	ms_diviksha	PLOT NO-928/1573, AT- Kheras, PO- Brahmansailo, Cuttack-754018	Odisha	21	21NFHPS3224D1ZL	9937896866	divikshasales.mart@gmail.com	Sumit Mohapatra	9937835200		{}
 \.
 
 
@@ -655,6 +656,7 @@ COPY public.billing_customer (id, "position", cid, name, kind, username, address
 --
 
 COPY public.billing_document (id, "position", doc_id, number, kind, date_iso, data) FROM stdin;
+1	0	doc_5n4mu9	CM/PAT/INV/DIG/26-27/1	INV	2026-06-26	{"id": "doc_5n4mu9", "no": "CM/PAT/INV/DIG/26-27/1", "fee": 3500, "net": 3500, "cgst": 266.95, "igst": 0, "rate": 18, "sgst": 266.95, "type": "INV", "inter": false, "total": 3500, "payRef": "", "dateISO": "2026-06-26", "payMode": "Cash", "service": {"sac": "998361", "name": "Digital Advertising Services", "prefix": "DIG"}, "taxable": 2966.1, "advTotal": 0, "advances": [{"no": "", "amt": ""}], "customer": {"name": "M/S DIVIKSHA SALES MART", "gstin": "21NFHPS3224D1ZL", "phone": "9937896866", "address": "PLOT NO-928/1573, AT- Kheras, PO- Brahmansailo, Cuttack-754018", "username": "ms_diviksha", "stateCode": "21", "stateName": "Odisha"}, "lastPaid": 0, "signMode": "sign", "inclusive": true, "centreCode": "PAT"}
 \.
 
 
@@ -671,6 +673,7 @@ COPY public.billing_projectdoc (id, "position", doc_id, number, kind, date_iso, 
 --
 
 COPY public.billing_sequence (id, key, value) FROM stdin;
+2	PAT:INV:26-27	1
 \.
 
 
@@ -679,9 +682,10 @@ COPY public.billing_sequence (id, key, value) FROM stdin;
 --
 
 COPY public.billing_service (id, "position", sid, name, prefix, sac, rate, inclusive, extra) FROM stdin;
-37	0	svc_int	Internship Programme	INT	999293	18	t	{}
-38	1	svc_trn	Training Programme	TRN	999293	18	t	{}
-39	2	svc_sw	Software Development	SWD	998314	18	f	{}
+21	0	svc_int	Internship Programme	INT	999293	18	t	{}
+22	1	svc_trn	Training Programme	TRN	999293	18	t	{}
+23	2	svc_sw	Software Development	SWD	998314	18	f	{}
+24	3	ser_lod5y1	Digital Advertising Services	DIG	998361	18	t	{}
 \.
 
 
@@ -710,22 +714,22 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 --
 
 COPY public.django_migrations (id, app, name, applied) FROM stdin;
-1	billing	0001_initial	2026-06-24 01:04:34.492616+05:30
-2	contenttypes	0001_initial	2026-06-26 21:45:03.198898+05:30
-3	contenttypes	0002_remove_content_type_name	2026-06-26 21:45:03.2073+05:30
-4	auth	0001_initial	2026-06-26 21:45:03.26468+05:30
-5	auth	0002_alter_permission_name_max_length	2026-06-26 21:45:03.27779+05:30
-6	auth	0003_alter_user_email_max_length	2026-06-26 21:45:03.281663+05:30
-7	auth	0004_alter_user_username_opts	2026-06-26 21:45:03.285705+05:30
-8	auth	0005_alter_user_last_login_null	2026-06-26 21:45:03.291683+05:30
-9	auth	0006_require_contenttypes_0002	2026-06-26 21:45:03.293687+05:30
-10	auth	0007_alter_validators_add_error_messages	2026-06-26 21:45:03.299696+05:30
-11	auth	0008_alter_user_username_max_length	2026-06-26 21:45:03.327931+05:30
-12	auth	0009_alter_user_last_name_max_length	2026-06-26 21:45:03.341731+05:30
-13	auth	0010_alter_group_name_max_length	2026-06-26 21:45:03.341731+05:30
-14	auth	0011_update_proxy_permissions	2026-06-26 21:45:03.357458+05:30
-15	auth	0012_alter_user_first_name_max_length	2026-06-26 21:45:03.357458+05:30
-16	sessions	0001_initial	2026-06-26 21:45:03.37361+05:30
+1	contenttypes	0001_initial	2026-06-27 15:50:51.815939+05:30
+2	contenttypes	0002_remove_content_type_name	2026-06-27 15:50:51.826185+05:30
+3	auth	0001_initial	2026-06-27 15:50:51.892904+05:30
+4	auth	0002_alter_permission_name_max_length	2026-06-27 15:50:51.892904+05:30
+5	auth	0003_alter_user_email_max_length	2026-06-27 15:50:51.901768+05:30
+6	auth	0004_alter_user_username_opts	2026-06-27 15:50:51.901768+05:30
+7	auth	0005_alter_user_last_login_null	2026-06-27 15:50:51.91439+05:30
+8	auth	0006_require_contenttypes_0002	2026-06-27 15:50:51.91439+05:30
+9	auth	0007_alter_validators_add_error_messages	2026-06-27 15:50:51.918013+05:30
+10	auth	0008_alter_user_username_max_length	2026-06-27 15:50:51.926382+05:30
+11	auth	0009_alter_user_last_name_max_length	2026-06-27 15:50:51.934711+05:30
+12	auth	0010_alter_group_name_max_length	2026-06-27 15:50:51.947256+05:30
+13	auth	0011_update_proxy_permissions	2026-06-27 15:50:51.96085+05:30
+14	auth	0012_alter_user_first_name_max_length	2026-06-27 15:50:51.968836+05:30
+15	billing	0001_initial	2026-06-27 15:50:52.032571+05:30
+16	sessions	0001_initial	2026-06-27 15:50:52.042594+05:30
 \.
 
 
@@ -734,7 +738,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 --
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
-nv5gk3qemzszbofsiyt4filiuo6rlzlc	.eJxVjDsOwyAQBe9CHSG8sIBSps8Z0PLZ4CTCkrErK3ePLblI2jczbxOB1qWGtZc5jFlcxSAuv1uk9CrtAPlJ7THJNLVlHqM8FHnSLu9TLu_b6f4dVOp1r1mTNV4PBpVzhBYseKdiYnZWe0IEgJKiQ2QDXhMC5aQM54yR90R8vrh8N0I:1wdAIp:rNbgoweQhzr8ubVTo0gh7AiWgjrb-Kc0_QEfg4s7rCE	2026-07-10 22:55:19.946953+05:30
+z16425va7gkt0dgcq8rczcshkvqvvhuq	.eJxVjMsOwiAQRf-FtSHyBpfu-w1kGAapGkhKuzL-uzbpQrf3nHNfLMK21rgNWuKc2YUJdvrdEuCD2g7yHdqtc-xtXebEd4UfdPCpZ3peD_fvoMKo3xoVpnMhJbUvYIIDAzJlwmJJOm2FSVp6UEULh7mEkIQi6YuwNjgtRWbvD_4ZOAk:1wdQDU:NWQ5dNbidqBjlqHnLE1osUD6cIm-HfdkUXMutUydHIE	2026-07-11 15:54:52.127493+05:30
 \.
 
 
@@ -784,28 +788,28 @@ SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
 -- Name: billing_business_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_business_id_seq', 13, true);
+SELECT pg_catalog.setval('public.billing_business_id_seq', 7, true);
 
 
 --
 -- Name: billing_centre_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_centre_id_seq', 26, true);
+SELECT pg_catalog.setval('public.billing_centre_id_seq', 18, true);
 
 
 --
 -- Name: billing_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_customer_id_seq', 23, true);
+SELECT pg_catalog.setval('public.billing_customer_id_seq', 6, true);
 
 
 --
 -- Name: billing_document_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_document_id_seq', 12, true);
+SELECT pg_catalog.setval('public.billing_document_id_seq', 1, true);
 
 
 --
@@ -819,14 +823,14 @@ SELECT pg_catalog.setval('public.billing_projectdoc_id_seq', 1, false);
 -- Name: billing_sequence_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_sequence_id_seq', 15, true);
+SELECT pg_catalog.setval('public.billing_sequence_id_seq', 2, true);
 
 
 --
 -- Name: billing_service_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_service_id_seq', 39, true);
+SELECT pg_catalog.setval('public.billing_service_id_seq', 24, true);
 
 
 --
@@ -1207,5 +1211,5 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict orJsHQJYgssp56LReUYMyQLwzQaBhUGq1MqomSObzDWRN4Ke3Q6iXOgQ31SLHlI
+\unrestrict GlXa1yncTKSRY7S23DcpeBU8uAD4NsfqyxsGkzNIStLKhlKRiBefmHEFuq24mH0
 
