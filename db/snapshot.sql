@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict vasBfuN8N6DorZBnv8h1HUsNu8fGMjFZkZM6yVq7BrppJmLfv42NebeySgwSgLT
+\restrict YzZ9CaSGw3TZQhbFYb5WHUh8hMvzaEualjzwAQbOOFMs8tkhjIbPzo5VX2Bj8gN
 
 -- Dumped from database version 17.10
 -- Dumped by pg_dump version 17.10
@@ -602,7 +602,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$870000$bejzdAT0CN6jPkYw5JJxZB$5/0sgZDAENPvsuCheYKAwkzYiw8a5qzlm6bbD8N8jfw=	2026-06-27 16:11:37.43564+05:30	f	admin				f	t	2026-06-27 15:54:04.845786+05:30
+1	pbkdf2_sha256$870000$bejzdAT0CN6jPkYw5JJxZB$5/0sgZDAENPvsuCheYKAwkzYiw8a5qzlm6bbD8N8jfw=	2026-06-27 21:56:47.06646+05:30	f	admin				f	t	2026-06-27 15:54:04.845786+05:30
 \.
 
 
@@ -627,7 +627,7 @@ COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 --
 
 COPY public.billing_business (id, name, tag, address, gstin, pan, udyam, "stateName", "stateCode", contact, "upiId", "upiQr", "bankName", "bankAccName", "bankAccNo", "bankIfsc", extra) FROM stdin;
-11	CodeMetrix	Proprietorship · IT Training, Internships & Software Development	Kesura, Bhubaneswar, Khordha, Odisha – 752057				Odisha	21		codemetrix1@ucobank		UCO Bank	Codemetrix	25430210003343	UCBA0002543	{}
+12	CodeMetrix	Proprietorship · IT Training, Internships & Software Development	Kesura, Bhubaneswar, Khordha, Odisha – 752057				Odisha	21		codemetrix1@ucobank		UCO Bank	Codemetrix	25430210003343	UCBA0002543	{}
 \.
 
 
@@ -636,9 +636,9 @@ COPY public.billing_business (id, name, tag, address, gstin, pan, udyam, "stateN
 --
 
 COPY public.billing_centre (id, "position", code, name, address, extra) FROM stdin;
-28	0	BAL	Balipatna	Balipatna, Khordha, Odisha	{}
-29	1	KES	Kesura–Bhubaneswar	Kesura, Bhubaneswar, Odisha	{}
-30	2	PAT	Patia-Bhubaneswar	Patia, Nandan Vihar, Bhubaneswar	{}
+31	0	BAL	Balipatna	Balipatna, Khordha, Odisha	{}
+32	1	KES	Kesura–Bhubaneswar	Kesura, Bhubaneswar, Odisha	{}
+33	2	PAT	Patia-Bhubaneswar	Patia, Nandan Vihar, Bhubaneswar	{}
 \.
 
 
@@ -647,8 +647,8 @@ COPY public.billing_centre (id, "position", code, name, address, extra) FROM std
 --
 
 COPY public.billing_customer (id, "position", cid, name, kind, username, address, "stateName", "stateCode", gstin, phone, email, "contactPersonName", "contactPersonPhone", notes, extra) FROM stdin;
-13	0	cus_mn2hsj	M/S DIVIKSHA SALES MART	client	ms_diviksha	PLOT NO-928/1573, AT- Kheras, PO- Brahmansailo, Cuttack-754018	Odisha	21	21NFHPS3224D1ZL	9937896866	divikshasales.mart@gmail.com	Sumit Mohapatra	9937835200		{}
-14	1	cus_4m6xuu	Jangyadatta Mallick	student	jangyadatta_mallick	Balipatna	Odisha	21		7735708285	jangyadattamallik47@gmail.com	Jangyadatta Mallick	7735708285		{}
+15	0	cus_mn2hsj	M/S DIVIKSHA SALES MART	client	ms_diviksha	PLOT NO-928/1573, AT- Kheras, PO- Brahmansailo, Cuttack-754018	Odisha	21	21NFHPS3224D1ZL	9937896866	divikshasales.mart@gmail.com	Sumit Mohapatra	9937835200		{}
+16	1	cus_4m6xuu	Jangyadatta Mallick	student	jangyadatta_mallick	Balipatna	Odisha	21		7735708285	jangyadattamallik47@gmail.com	Jangyadatta Mallick	7735708285		{}
 \.
 
 
@@ -657,8 +657,8 @@ COPY public.billing_customer (id, "position", cid, name, kind, username, address
 --
 
 COPY public.billing_document (id, "position", doc_id, number, kind, date_iso, data) FROM stdin;
-5	0	doc_5n4mu9	CM/PAT/INV/DIG/26-27/1	INV	2026-06-26	{"id": "doc_5n4mu9", "no": "CM/PAT/INV/DIG/26-27/1", "fee": 3500, "net": 3500, "cgst": 266.95, "igst": 0, "rate": 18, "sgst": 266.95, "type": "INV", "inter": false, "total": 3500, "payRef": "", "dateISO": "2026-06-26", "payMode": "Cash", "service": {"sac": "998361", "name": "Digital Advertising Services", "prefix": "DIG"}, "taxable": 2966.1, "advTotal": 0, "advances": [{"no": "", "amt": ""}], "customer": {"name": "M/S DIVIKSHA SALES MART", "gstin": "21NFHPS3224D1ZL", "phone": "9937896866", "address": "PLOT NO-928/1573, AT- Kheras, PO- Brahmansailo, Cuttack-754018", "username": "ms_diviksha", "stateCode": "21", "stateName": "Odisha"}, "lastPaid": 0, "signMode": "sign", "inclusive": true, "centreCode": "PAT"}
-6	1	doc_4d8k7d	CM/BAL/INV/TRN/26-27/1	INV	2026-06-27	{"id": "doc_4d8k7d", "no": "CM/BAL/INV/TRN/26-27/1", "fee": 6000, "net": 6000, "cgst": 0, "igst": 0, "rate": 0, "sgst": 0, "type": "INV", "inter": false, "total": 6000, "payRef": "", "dateISO": "2026-06-27", "payMode": "Cash", "service": {"sac": "999293", "name": "Training Programme", "prefix": "TRN"}, "taxable": 6000, "advTotal": 0, "advances": [{"no": "", "amt": ""}], "customer": {"name": "Jangyadatta Mallick", "gstin": "", "phone": "7735708285", "address": "Balipatna", "username": "jangyadatta_mallick", "stateCode": "21", "stateName": "Odisha"}, "lastPaid": 0, "signMode": "sign", "inclusive": true, "centreCode": "BAL"}
+7	0	doc_5n4mu9	CM/PAT/INV/DIG/26-27/1	INV	2026-06-26	{"id": "doc_5n4mu9", "no": "CM/PAT/INV/DIG/26-27/1", "fee": 3500, "net": 3500, "cgst": 266.95, "igst": 0, "rate": 18, "sgst": 266.95, "type": "INV", "inter": false, "total": 3500, "payRef": "", "dateISO": "2026-06-26", "payMode": "Cash", "service": {"sac": "998361", "name": "Digital Advertising Services", "prefix": "DIG"}, "taxable": 2966.1, "advTotal": 0, "advances": [{"no": "", "amt": ""}], "customer": {"name": "M/S DIVIKSHA SALES MART", "gstin": "21NFHPS3224D1ZL", "phone": "9937896866", "address": "PLOT NO-928/1573, AT- Kheras, PO- Brahmansailo, Cuttack-754018", "username": "ms_diviksha", "stateCode": "21", "stateName": "Odisha"}, "lastPaid": 0, "signMode": "sign", "inclusive": true, "centreCode": "PAT"}
+8	1	doc_4d8k7d	CM/BAL/INV/TRN/26-27/1	INV	2026-06-27	{"id": "doc_4d8k7d", "no": "CM/BAL/INV/TRN/26-27/1", "fee": 6000, "net": 6000, "cgst": 0, "igst": 0, "rate": 0, "sgst": 0, "type": "INV", "inter": false, "total": 6000, "payRef": "", "dateISO": "2026-06-27", "payMode": "Cash", "service": {"sac": "999293", "name": "Training Programme", "prefix": "TRN"}, "taxable": 6000, "advTotal": 0, "advances": [{"no": "", "amt": ""}], "customer": {"name": "Jangyadatta Mallick", "gstin": "", "phone": "7735708285", "address": "Balipatna", "username": "jangyadatta_mallick", "stateCode": "21", "stateName": "Odisha"}, "lastPaid": 0, "signMode": "sign", "inclusive": true, "centreCode": "BAL"}
 \.
 
 
@@ -675,8 +675,8 @@ COPY public.billing_projectdoc (id, "position", doc_id, number, kind, date_iso, 
 --
 
 COPY public.billing_sequence (id, key, value) FROM stdin;
-7	PAT:INV:26-27	1
-8	BAL:INV:26-27	1
+9	PAT:INV:26-27	1
+10	BAL:INV:26-27	1
 \.
 
 
@@ -685,10 +685,10 @@ COPY public.billing_sequence (id, key, value) FROM stdin;
 --
 
 COPY public.billing_service (id, "position", sid, name, prefix, sac, rate, inclusive, extra) FROM stdin;
-37	0	svc_int	Internship Programme	INT	999293	18	t	{}
-38	1	svc_trn	Training Programme	TRN	999293	0	t	{}
-39	2	svc_sw	Software Development	SWD	998314	18	f	{}
-40	3	ser_lod5y1	Digital Advertising Services	DIG	998361	18	t	{}
+41	0	svc_int	Internship Programme	INT	999293	0	t	{}
+42	1	svc_trn	Training Programme	TRN	999293	0	t	{}
+43	2	svc_sw	Software Development	SWD	998314	18	f	{}
+44	3	ser_lod5y1	Digital Advertising Services	DIG	998361	18	t	{}
 \.
 
 
@@ -743,6 +743,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 z16425va7gkt0dgcq8rczcshkvqvvhuq	.eJxVjMsOwiAQRf-FtSHyBpfu-w1kGAapGkhKuzL-uzbpQrf3nHNfLMK21rgNWuKc2YUJdvrdEuCD2g7yHdqtc-xtXebEd4UfdPCpZ3peD_fvoMKo3xoVpnMhJbUvYIIDAzJlwmJJOm2FSVp6UEULh7mEkIQi6YuwNjgtRWbvD_4ZOAk:1wdQDU:NWQ5dNbidqBjlqHnLE1osUD6cIm-HfdkUXMutUydHIE	2026-07-11 15:54:52.127493+05:30
 siv6cogw5061gcfuh8nkarbiregnezy9	.eJxVjMsOwiAQRf-FtSHyBpfu-w1kGAapGkhKuzL-uzbpQrf3nHNfLMK21rgNWuKc2YUJdvrdEuCD2g7yHdqtc-xtXebEd4UfdPCpZ3peD_fvoMKo3xoVpnMhJbUvYIIDAzJlwmJJOm2FSVp6UEULh7mEkIQi6YuwNjgtRWbvD_4ZOAk:1wdQTh:Yb8QqRFSb9bb7nEK9PEuEcvpUR2G9VwRrl7nW5-Wuk8	2026-07-11 16:11:37.444637+05:30
+u3o0vec2qdvsspn9qm9owr9nazsj2uej	.eJxVjMsOwiAQRf-FtSHyBpfu-w1kGAapGkhKuzL-uzbpQrf3nHNfLMK21rgNWuKc2YUJdvrdEuCD2g7yHdqtc-xtXebEd4UfdPCpZ3peD_fvoMKo3xoVpnMhJbUvYIIDAzJlwmJJOm2FSVp6UEULh7mEkIQi6YuwNjgtRWbvD_4ZOAk:1wdVrj:NT_oNz7rHK92xQfQNT_n0es4LIm36OmF1xC1fevZtp0	2026-07-11 21:56:47.080057+05:30
 \.
 
 
@@ -792,28 +793,28 @@ SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
 -- Name: billing_business_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_business_id_seq', 11, true);
+SELECT pg_catalog.setval('public.billing_business_id_seq', 12, true);
 
 
 --
 -- Name: billing_centre_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_centre_id_seq', 30, true);
+SELECT pg_catalog.setval('public.billing_centre_id_seq', 33, true);
 
 
 --
 -- Name: billing_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_customer_id_seq', 14, true);
+SELECT pg_catalog.setval('public.billing_customer_id_seq', 16, true);
 
 
 --
 -- Name: billing_document_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_document_id_seq', 6, true);
+SELECT pg_catalog.setval('public.billing_document_id_seq', 8, true);
 
 
 --
@@ -827,14 +828,14 @@ SELECT pg_catalog.setval('public.billing_projectdoc_id_seq', 1, false);
 -- Name: billing_sequence_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_sequence_id_seq', 8, true);
+SELECT pg_catalog.setval('public.billing_sequence_id_seq', 10, true);
 
 
 --
 -- Name: billing_service_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.billing_service_id_seq', 40, true);
+SELECT pg_catalog.setval('public.billing_service_id_seq', 44, true);
 
 
 --
@@ -1215,5 +1216,5 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict vasBfuN8N6DorZBnv8h1HUsNu8fGMjFZkZM6yVq7BrppJmLfv42NebeySgwSgLT
+\unrestrict YzZ9CaSGw3TZQhbFYb5WHUh8hMvzaEualjzwAQbOOFMs8tkhjIbPzo5VX2Bj8gN
 
